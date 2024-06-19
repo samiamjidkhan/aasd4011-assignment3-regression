@@ -1,75 +1,69 @@
-# Ex-3: Regression in Harry Potter Universe
+# Linear Regression Model
 
-## Overview
-In this exercise, we will use regression to predict the value of vaults in a hypothetical scenario based on the number of gold and silver coins in each vault.
+This repository contains two main scripts: one for creating and training a linear regression model using PyTorch, and another for testing the model using pytest.
 
-## Objectives
-1. Train a model using given data of vaults.
-2. Use the trained model to predict the value of other vaults.
+## Files
 
-## The Assignment
-We are in the Harry-Potter-verse. 
-We have the data about the value of several vaults in GB Pounds.
-We also know how many pieces of gold there are in each vault.
-Here is a list.
-you don't have to copy it, a function in the tests will generate it. 
+1. **`regression.py`** - Contains functions to create, train, and fit a linear regression model.
+2. **`test_regression.py`** - Contains tests for the linear regression model using pytest.
 
-| # Gold | # Silver | Value (GBP)  |
-|-------|------|---------|
-| 24.0, | 2.0, | 1422.40 |
-| 24.0, | 4.0, | 1469.50 |
-| 16.0, | 3.0, | 1012.70 |
-| 25.0, | 6.0, | 1632.20 |
-| 16.0, | 1.0, |  952.20 |
-| 19.0, | 2.0, | 1117.70 |
-| 14.0, | 3.0, |  906.20 |
-| 22.0, | 2.0, | 1307.30 |
-| 25.0, | 4.0, | 1552.80 |
-| 12.0, | 1.0, |  686.70 |
-| 24.0, | 7.0, | 1543.40 |
-| 19.0, | 1.0, | 1086.50 |
-| 23.0, | 7.0, | 1495.20 |
-| 19.0, | 5.0, | 1260.70 |
-| 21.0, | 3.0, | 1288.10 |
-| 16.0, | 6.0, | 1111.50 |
-| 24.0, | 5.0, | 1523.10 |
-| 19.0, | 7.0, | 1297.40 |
-| 14.0, | 4.0, | 946.40  |
-| 20.0, | 3.0, | 1197.10 |
+## Prerequisites
 
-We would like to guess the value of a few other vaults, given the number of gold and silver coins known to be in them.
+- Python 3.x
+- `torch` library
+- `pytest` library
 
-### Part 1. Train a model 
-* Using 1d or 2d data, (i.e. using just the gold pieces counter or both coin cunter), create a model and train it. 
-* The tests will pass when the loss is small enough.
-* You need to change some of the code in the file `regression.py` - follow what we did in class.
-* You can get a tuple with the shape of a tensor using `shape`
+Install the required libraries:
 
-### Part 2. Use the model to predict some unknown values
-* Once you've trained the model, these tests will predict some unseen vaults.
-* Thought excercise - ungraded, how would you calculate the modeled value of a gold coin, given a trained model?
+```sh
+pip install torch pytest
+```
 
----
+## Usage
 
-## Validating and Evaluating Your Results
+### Training the Model
 
-### Online
-1. After committing and pushing your code, check the mark on the top line (near the commit ID).
-2. If some tests are failing, click on the ❌ to open up a popup, which will show details about the errors.
-3. You can click the [Details]() link to see what went wrong. Pay special attention to lines with the words "Failed" or "error".
+1. Ensure you have your input and output tensors `X` and `y` ready.
+2. Import the `fit_regression_model` function from `regression.py` and call it with your data.
 
-![screnshot](images/details_screenshot.png)
+Example usage:
 
-4. Near the bottom of the [Details]() page, you can see your score. Here are examples of 0/5 and 5/5:
+```python
+from regression import fit_regression_model
+import torch
 
-![score](images/score.png) ![success](images/success.png)
+# Example input and output tensors
+X = torch.tensor([[24.], [16.], [25.], [19.], [14.]])
+y = torch.tensor([[1422.4], [1012.7], [1632.2], [1117.7], [906.2]])
 
-5. When you achieve a perfect score, you will see a green checkmark near the commit ID.
+# Train the model
+trained_model, final_loss = fit_regression_model(X, y)
+```
 
-![green](images/green.png)
+### Running Tests
 
-### Locally
-1. You can test your code locally by installing and running `pytest` (`pip install pytest` or `conda install pytest`).
-2. Run the tests using the command `pytest` in your terminal. This will show the status of each test and any errors that occurred.
+1. Ensure `regression.py` and `test_regression.py` are in your working directory.
+2. Run the tests using pytest:
 
-Good luck!
+```sh
+pytest test_regression.py
+```
+
+## File Overview
+
+### `regression.py`
+
+Defines functions to create, train, and fit a linear regression model using PyTorch.
+
+### `test_regression.py`
+
+Defines tests for the linear regression model using pytest, including:
+- Training the model on 1D and 2D data.
+- Checking the prediction accuracy.
+
+## Example Tests
+
+```sh
+pytest test_regression.py
+```
+
